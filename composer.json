@@ -1,18 +1,16 @@
 {
-    "name": "laravolt/avatar",
-    "description": "Turn name, email, and any other string into beautiful, initial-based avatar.",
+    "name": "chelout/avatar",
+    "description": "Turn name, email, and any other string into beautiful, initial-based avatar with shadow.",
     "keywords": [
         "laravel",
-        "laravolt",
         "avatar"
     ],
-    "homepage": "https://github.com/laravolt/avatar",
+    "homepage": "https://github.com/chelout/avatar",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bayu Hendra Winata",
-            "email": "uyab.exe@gmail.com",
-            "homepage": "http://id-laravel.com",
+            "name": "Viacheslav Ostrovskiy",
+            "email": "chelout@gmail.com",
             "role": "Developer"
         }
     ],
@@ -41,9 +39,6 @@
         "test": "phpunit"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
-        },
         "laravel": {
             "providers": [
                 "Chelout\\Avatar\\ServiceProvider"

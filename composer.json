@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravolt\\Avatar\\": "src"
+            "Chelout\\Avatar\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravolt\\Avatar\\Test\\": "tests"
+            "Chelout\\Avatar\\Test\\": "tests"
         }
     },
     "scripts": {
@@ -46,10 +46,10 @@
         },
         "laravel": {
             "providers": [
-                "Laravolt\\Avatar\\ServiceProvider"
+                "Chelout\\Avatar\\ServiceProvider"
             ],
             "aliases": {
-                "Avatar": "Laravolt\\Avatar\\Facade"
+                "Avatar": "Chelout\\Avatar\\Facade"
             }
         }
     }

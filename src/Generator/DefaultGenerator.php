@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravolt\Avatar\Generator;
+namespace Chelout\Avatar\Generator;
 
 use Illuminate\Support\Collection;
 use Stringy\Stringy;
 
 class DefaultGenerator implements GeneratorInterface
 {
-    public function make($name, $length = 2, $uppercase = false, $ascii = false)
+    public function make($name, $length = 2, $uppercase = false)
     {
-        $this->setName($name, $ascii);
+        $this->setName($name);
 
         $words = new Collection(explode(' ', $this->name));
 
@@ -37,7 +37,7 @@ class DefaultGenerator implements GeneratorInterface
         return $initial;
     }
 
-    private function setName($name, $ascii)
+    private function setName($name)
     {
         if (is_array($name)) {
             throw new \InvalidArgumentException(
@@ -54,10 +54,6 @@ class DefaultGenerator implements GeneratorInterface
         if (filter_var($name, FILTER_VALIDATE_EMAIL)) {
             // turn bayu.hendra@gmail.com into "Bayu Hendra"
             $name = current($name->split('@', 1))->replace('.', ' ');
-        }
-
-        if ($ascii) {
-            $name = $name->toAscii();
         }
 
         $this->name = $name;

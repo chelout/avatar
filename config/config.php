@@ -19,13 +19,7 @@ return [
     'driver'    => 'gd',
 
     // Initial generator class
-    'generator' => \Laravolt\Avatar\Generator\DefaultGenerator::class,
-
-    // Whether all characters supplied must be replaced with their closest ASCII counterparts
-    'ascii'    => false,
-
-    // Image shape: circle or square
-    'shape' => 'circle',
+    'generator' => \Chelout\Avatar\Generator\DefaultGenerator::class,
 
     // Image width, in pixel
     'width'    => 100,
@@ -37,46 +31,63 @@ return [
     'chars'    => 2,
 
     // font size
-    'fontSize' => 48,
+    'fontSize' => 30,
 
     // convert initial letter in uppercase
-    'uppercase' => false,
+    'uppercase' => true,
 
     // Fonts used to render text.
     // If contains more than one fonts, randomly selected based on name supplied
-    'fonts'    => [__DIR__.'/../fonts/OpenSans-Bold.ttf', __DIR__.'/../fonts/rockwell.ttf'],
+    // 'fonts' => [
+    //     __DIR__ . '/../fonts/OpenSans-Bold.ttf',
+    //     __DIR__ . '/../fonts/rockwell.ttf',
+    //     __DIR__ . '/../HelveticaNeueCyr-Medium.otf',
+    //     __DIR__ . '/../HelveticaNeueCyr-Light.otf'
+    // ],
 
-    // List of foreground colors to be used, randomly selected based on name supplied
-    'foregrounds'   => [
-        '#FFFFFF',
-    ],
+    'font' => __DIR__ . '/../HelveticaNeueCyr-Medium.otf',
 
-    // List of background colors to be used, randomly selected based on name supplied
-    'backgrounds'   => [
-        '#f44336',
-        '#E91E63',
-        '#9C27B0',
-        '#673AB7',
-        '#3F51B5',
-        '#2196F3',
-        '#03A9F4',
-        '#00BCD4',
-        '#009688',
-        '#4CAF50',
-        '#8BC34A',
-        '#CDDC39',
-        '#FFC107',
-        '#FF9800',
-        '#FF5722',
-    ],
-
-    'border'    => [
-        'size'  => 1,
-
-        // border color, available value are:
-        // 'foreground' (same as foreground color)
-        // 'background' (same as background color)
-        // or any valid hex ('#aabbcc')
-        'color' => 'foreground',
+    // List of colors
+    'colors' => [
+        [
+            'background' => '#5fa015',
+            'shadow' => '#589824',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#8fb718',
+            'shadow' => '#85AE2A',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#0b94a9',
+            'shadow' => '#188D9F',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#23abd3',
+            'shadow' => '#2DA3C7',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#ff9800',
+            'shadow' => '#F08F19',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#ffc035',
+            'shadow' => '#F0B63E',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#c23b3b',
+            'shadow' => '#B13236',
+            'foreground' => '#ffffff',
+        ],
+        [
+            'background' => '#b74178',
+            'shadow' => '#A7376D',
+            'foreground' => '#ffffff',
+        ],
     ],
 ];

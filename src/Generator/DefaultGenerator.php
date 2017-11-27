@@ -52,7 +52,7 @@ class DefaultGenerator implements GeneratorInterface
         $name = Stringy::create($name)->collapseWhitespace();
 
         if (filter_var($name, FILTER_VALIDATE_EMAIL)) {
-            // turn bayu.hendra@gmail.com into "Bayu Hendra"
+            // turn email into name
             $name = current($name->split('@', 1))->replace('.', ' ');
         }
 

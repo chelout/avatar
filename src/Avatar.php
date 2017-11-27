@@ -15,18 +15,10 @@ class Avatar
     protected $name;
 
     protected $chars;
-    // protected $shape;
     protected $width;
     protected $height;
-    // protected $availableBackgrounds;
-    // protected $availableForegrounds;
     protected $availableColors;
-    // protected $fonts;
-    // protected $font;
     protected $fontSize;
-    // protected $borderSize = 0;
-    // protected $borderColor;
-    // protected $ascii = false;
     protected $uppercase = true;
 
     /**
@@ -44,8 +36,6 @@ class Avatar
 
     protected $initialGenerator;
 
-    // protected $defaultFont = __DIR__.'/../fonts/HelveticaNeueCyr-Medium.otf';
-
     /**
      * Avatar constructor.
      *
@@ -56,10 +46,7 @@ class Avatar
     {
         $default = [
             'driver'      => 'gd',
-            // 'shape'       => 'circle',
             'chars'       => 2,
-            // 'backgrounds' => [$this->background],
-            // 'foregrounds' => [$this->foreground],
             'colors' => [
                 [
                     'background' => $this->background,
@@ -67,37 +54,23 @@ class Avatar
                     'foreground' => $this->foreground,
                 ]
             ],
-            // 'fonts'       => [$this->defaultFont],
-            'font' => __DIR__.'/../fonts/HelveticaNeueCyr-Medium.otf',
+            'font' => resource_path('fonts/OpenSans-Bold.ttf'),
             'fontSize'    => 48,
             'width'       => 100,
             'height'      => 100,
-            // 'ascii'       => false,
             'uppercase'   => false,
-            // 'border'      => [
-            //     'size'  => 1,
-            //     'color' => 'foreground',
-            // ],
         ];
 
         $config += $default;
-        // dd($config, $default);
 
         $this->driver = $config['driver'];
-        // $this->shape = $config['shape'];
         $this->chars = $config['chars'];
-        // $this->availableBackgrounds = $config['backgrounds'];
-        // $this->availableForegrounds = $config['foregrounds'];
         $this->availableColors = $config['colors'];
-        // $this->fonts = $config['fonts'];
         $this->font = $config['font'];
         $this->fontSize = $config['fontSize'];
         $this->width = $config['width'];
         $this->height = $config['height'];
-        // $this->ascii = $config['ascii'];
         $this->uppercase = $config['uppercase'];
-        // $this->borderSize = $config['border']['size'];
-        // $this->borderColor = $config['border']['color'];
 
         if (\is_null($cache)) {
             $cache = new ArrayStore();
@@ -125,20 +98,17 @@ class Avatar
 
         $this->setColors($this->getRandomColor());
 
-        // $this->setForeground($this->getRandomForeground());
-        // $this->setBackground($this->getRandomBackground());
-
         return $this;
     }
 
-    // public function setFont($font)
-    // {
-    //     if (is_file($font)) {
-    //         $this->font = $font;
-    //     }
+    public function setFont($font)
+    {
+        if (is_file($font)) {
+            $this->font = $font;
+        }
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function toBase64()
     {
@@ -165,28 +135,33 @@ class Avatar
 
     public function setColors(array $color)
     {
-        // $this->background = $color['background'];
-        // $this->shadow = $color['shadow'];
-        // $this->foreground = $color['foreground'];
-
-        list('background' => $this->background, 'shadow' => $this->shadow, 'foreground' => $this->foreground) = $color;
+        $this->setBackground($color['background'])
+            ->setShadow($color['shadow'])
+            ->setForeground($color['foreground']);
 
         return $this;
     }
 
-    // public function setBackground($hex)
-    // {
-    //     $this->background = $hex;
+    public function setBackground($hex)
+    {
+        $this->background = $hex;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
-    // public function setForeground($hex)
-    // {
-    //     $this->foreground = $hex;
+    public function setShadow($hex)
+    {
+        $this->shadow = $hex;
 
-    //     return $this;
-    // }
+        return $this;
+    }
+
+    public function setForeground($hex)
+    {
+        $this->foreground = $hex;
+
+        return $this;
+    }
 
     public function setDimension($width, $height = null)
     {
@@ -206,14 +181,6 @@ class Avatar
         return $this;
     }
 
-    // public function setBorder($size, $color)
-    // {
-    //     $this->borderSize = $size;
-    //     $this->borderColor = $color;
-
-    //     return $this;
-    // }
-
     public function getInitial()
     {
         return $this->initials;
@@ -230,35 +197,6 @@ class Avatar
     {
         return collect($this->availableColors)->random();
     }
-
-    // protected function getRandomBackground()
-    // {
-    //     return $this->getRandomElement($this->availableBackgrounds, $this->background);
-    // }
-
-    // protected function getRandomForeground()
-    // {
-    //     return $this->getRandomElement($this->availableForegrounds, $this->foreground);
-    // }
-
-    // protected function setRandomFont()
-    // {
-    //     $randomFont = $this->getRandomElement($this->fonts, $this->defaultFont);
-
-    //     $this->setFont($randomFont);
-    // }
-
-    // protected function getBorderColor()
-    // {
-    //     if ($this->borderColor == 'foreground') {
-    //         return $this->foreground;
-    //     }
-    //     if ($this->borderColor == 'background') {
-    //         return $this->background;
-    //     }
-
-    //     return $this->borderColor;
-    // }
 
     public function buildAvatar()
     {
@@ -278,16 +216,9 @@ class Avatar
 
     protected function createSquareShape()
     {
-        $this->image->rectangle(
-            0,
-            0,
-            $this->width,
-            $this->height,
-            function (AbstractShape $draw) {
-                $draw->background($this->background);
-                // $draw->border($this->borderSize, $this->getBorderColor());
-            }
-        );
+        $this->image->rectangle(0, 0, $this->width, $this->height, function (AbstractShape $draw) {
+            $draw->background($this->background);
+        });
     }
 
     protected function createTextShadow()
@@ -299,7 +230,6 @@ class Avatar
                 $font->file($this->font);
                 $font->size($this->fontSize);
                 $font->color($this->shadow);
-                // $font->color(array(0, 0, 0, 0.1));
                 $font->align('center');
                 $font->valign('middle');
             });
@@ -323,14 +253,11 @@ class Avatar
         $attributes = [
             'name',
             'initials',
-            // 'shape',
             'chars',
             'font',
             'fontSize',
             'width',
             'height',
-            // 'borderSize',
-            // 'borderColor',
         ];
         foreach ($attributes as $attr) {
             $keys[] = $this->$attr;
@@ -338,23 +265,6 @@ class Avatar
 
         return md5(implode('-', $keys));
     }
-
-    // protected function getRandomElement($array, $default)
-    // {
-    //     if (strlen($this->name) == 0 || count($array) == 0) {
-    //         return $default;
-    //     }
-
-    //     $number = ord($this->name[0]);
-    //     $i = 1;
-    //     $charLength = strlen($this->name);
-    //     while ($i < $charLength) {
-    //         $number += ord($this->name[$i]);
-    //         $i++;
-    //     }
-
-    //     return $array[$number % count($array)];
-    // }
 
     protected function buildInitial()
     {

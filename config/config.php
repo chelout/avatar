@@ -36,15 +36,6 @@ return [
     // convert initial letter in uppercase
     'uppercase' => true,
 
-    // Fonts used to render text.
-    // If contains more than one fonts, randomly selected based on name supplied
-    // 'fonts' => [
-    //     __DIR__ . '/../fonts/OpenSans-Bold.ttf',
-    //     __DIR__ . '/../fonts/rockwell.ttf',
-    //     __DIR__ . '/../HelveticaNeueCyr-Medium.otf',
-    //     __DIR__ . '/../HelveticaNeueCyr-Light.otf'
-    // ],
-
     'font' => resource_path('fonts/OpenSans-Bold.ttf'),
 
     // List of colors

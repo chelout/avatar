@@ -62,7 +62,10 @@ class ServiceProvider extends BaseServiceProvider
     protected function registerConfigurations()
     {
         $this->mergeConfigFrom($this->packagePath('config/config.php'), 'avatar');
-        $this->publishes([$this->packagePath('config/config.php') => config_path('avatar.php')], 'config');
+        $this->publishes([
+            $this->packagePath('config/config.php') => config_path('avatar.php'),
+            $this->packagePath('fonts') => resource_path('fonts')
+        ], 'config');
     }
 
     /**

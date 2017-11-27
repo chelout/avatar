@@ -45,7 +45,7 @@ return [
     //     __DIR__ . '/../HelveticaNeueCyr-Light.otf'
     // ],
 
-    'font' => __DIR__ . '/../HelveticaNeueCyr-Medium.otf',
+    'font' => resource_path('fonts/OpenSans-Bold.ttf'),
 
     // List of colors
     'colors' => [

@@ -31,7 +31,7 @@ class DefaultGenerator implements GeneratorInterface
         }
 
         if ($uppercase) {
-            $initial = strtoupper($initial);
+            $initial = mb_strtoupper($initial);
         }
 
         return $initial;
